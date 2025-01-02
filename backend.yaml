@@ -1,0 +1,12 @@
+server:
+  port: 6688
+  db_url: postgres://postgres:postgres@localhost:5432/backend
+auth:
+  ek: |
+    -----BEGIN PRIVATE KEY-----
+    MC4CAQAwBQYDK2VwBCIEIPU73KJReh1Lxv+aF/UbPPygRE7Bf3ozqyKsu65+pSCk
+    -----END PRIVATE KEY-----
+  dk: |
+    -----BEGIN PUBLIC KEY-----
+    MCowBQYDK2VwAyEAzrRHbn3NvA3c3oSoAY4h/BZ49VzYV+d1UVi7tCz6o20=
+    -----END PUBLIC KEY-----
