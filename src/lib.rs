@@ -1,12 +1,15 @@
 mod config;
 mod error;
+mod model;
 mod util;
 
 use sqlx::PgPool;
-use std::{fmt::Debug, ops::Deref, sync::Arc};
+use sqlx_db_tester::TestPg;
+use std::{fmt::Debug, ops::Deref, path::Path, sync::Arc};
 
 pub use config::{AppConfig, AuthConfig, ServerConfig};
 pub use error::AppError;
+pub use model::{CreateUser, User};
 pub use util::{DecodingKey, EncodingKey};
 
 #[derive(Debug, Clone)]
@@ -35,6 +38,33 @@ impl AppState {
                 dk,
             }),
         })
+    }
+
+    pub async fn test_new() -> Result<(TestPg, Self), AppError> {
+        let config = AppConfig::new()?;
+
+        let post = config.server.db_url.rfind("/");
+        let url = match post {
+            Some(post) => &config.server.db_url[..post],
+            None => "postgres://postgres:postgres@localhost:5432",
+        };
+
+        let tdb = TestPg::new(url.to_string(), Path::new("./migrations"));
+        let pool = tdb.get_pool().await;
+        let ek = EncodingKey::new(&config.auth.ek)?;
+        let dk = DecodingKey::new(&config.auth.dk)?;
+
+        Ok((
+            tdb,
+            Self {
+                inner: Arc::new(AppStateInner {
+                    config,
+                    pool,
+                    ek,
+                    dk,
+                }),
+            },
+        ))
     }
 }
 
