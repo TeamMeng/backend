@@ -1,3 +1,4 @@
+use axum::{http::StatusCode, response::IntoResponse};
 use std::io;
 use thiserror::Error;
 
@@ -20,4 +21,17 @@ pub enum AppError {
 
     #[error("login error: {0}")]
     LoginError(String),
+}
+
+impl IntoResponse for AppError {
+    fn into_response(self) -> axum::response::Response {
+        let status = match &self {
+            Self::IoError(_) | Self::SerdeYamlError(_) | Self::SqlxError(_) => {
+                StatusCode::INTERNAL_SERVER_ERROR
+            }
+            Self::Argon2Error(_) | Self::LoginError(_) => StatusCode::BAD_REQUEST,
+            Self::JwtError(_) => StatusCode::FORBIDDEN,
+        };
+        status.into_response()
+    }
 }

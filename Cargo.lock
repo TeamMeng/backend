@@ -166,6 +166,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "backend"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "argon2",
+ "axum",
+ "chrono",
+ "jwt-simple",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "sqlx",
+ "sqlx-db-tester",
+ "thiserror 2.0.9",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "backtrace"
 version = "0.3.74"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2358,26 +2378,6 @@ dependencies = [
  "once_cell",
  "rustix",
  "windows-sys 0.59.0",
-]
-
-[[package]]
-name = "template"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "argon2",
- "axum",
- "chrono",
- "jwt-simple",
- "serde",
- "serde_json",
- "serde_yaml",
- "sqlx",
- "sqlx-db-tester",
- "thiserror 2.0.9",
- "tokio",
- "tracing",
- "tracing-subscriber",
 ]
 
 [[package]]

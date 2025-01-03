@@ -1,0 +1,18 @@
+### signup
+POST http://localhost:6688/signup
+Content-Type: application/json
+
+{
+    "name": "Meng",
+    "email": "Meng@123.com",
+    "password": "hunter42"
+}
+
+### signin
+POST http://localhost:6688/signin
+Content-Type: application/json
+
+{
+    "email": "Meng@123.com",
+    "password": "hunter42"
+}

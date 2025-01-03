@@ -1,3 +1,3 @@
 mod users;
 
-pub use users::{CreateUser, User};
+pub use users::{CreateUser, LoginUser, User};

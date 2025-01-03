@@ -42,7 +42,7 @@ mod tests {
         assert_eq!(config.server.port, 6688);
         assert_eq!(
             config.server.db_url,
-            "postgres://postgres:postgres@localhost:5432/backend"
+            "postgres://postgres:postgres@localhost:5432/base"
         );
         assert_eq!(config.auth.ek, "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIPU73KJReh1Lxv+aF/UbPPygRE7Bf3ozqyKsu65+pSCk\n-----END PRIVATE KEY-----\n");
         assert_eq!(config.auth.dk, "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAzrRHbn3NvA3c3oSoAY4h/BZ49VzYV+d1UVi7tCz6o20=\n-----END PUBLIC KEY-----\n");

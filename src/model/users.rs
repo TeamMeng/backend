@@ -7,26 +7,26 @@ use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use sqlx::prelude::FromRow;
 
-#[derive(Debug, Deserialize, Serialize, FromRow)]
+#[derive(Debug, Deserialize, Serialize, FromRow, Clone)]
 pub struct User {
-    id: i64,
-    name: String,
-    email: String,
-    password_hash: String,
-    created_at: DateTime<Utc>,
+    pub id: i64,
+    pub name: String,
+    pub email: String,
+    pub password_hash: String,
+    pub created_at: DateTime<Utc>,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct CreateUser {
-    name: String,
-    email: String,
-    password: String,
+    pub name: String,
+    pub email: String,
+    pub password: String,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct LoginUser {
-    email: String,
-    password: String,
+    pub email: String,
+    pub password: String,
 }
 
 impl AppState {
@@ -199,7 +199,7 @@ mod tests {
     }
 
     impl CreateUser {
-        fn new(
+        pub fn new(
             name: impl Into<String>,
             email: impl Into<String>,
             password: impl Into<String>,
@@ -213,7 +213,7 @@ mod tests {
     }
 
     impl LoginUser {
-        fn new(email: impl Into<String>, password: impl Into<String>) -> Self {
+        pub fn new(email: impl Into<String>, password: impl Into<String>) -> Self {
             Self {
                 email: email.into(),
                 password: password.into(),

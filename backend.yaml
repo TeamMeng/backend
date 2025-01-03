@@ -1,6 +1,6 @@
 server:
   port: 6688
-  db_url: postgres://postgres:postgres@localhost:5432/backend
+  db_url: postgres://postgres:postgres@localhost:5432/base
 auth:
   ek: |
     -----BEGIN PRIVATE KEY-----

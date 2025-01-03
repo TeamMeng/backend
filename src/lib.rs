@@ -1,5 +1,6 @@
 mod config;
 mod error;
+mod handler;
 mod model;
 mod util;
 
@@ -9,7 +10,8 @@ use std::{fmt::Debug, ops::Deref, path::Path, sync::Arc};
 
 pub use config::{AppConfig, AuthConfig, ServerConfig};
 pub use error::AppError;
-pub use model::{CreateUser, User};
+pub use handler::{signin, signup};
+pub use model::{CreateUser, LoginUser, User};
 pub use util::{DecodingKey, EncodingKey};
 
 #[derive(Debug, Clone)]
